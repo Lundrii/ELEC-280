@@ -4,19 +4,20 @@ import static java.lang.Integer.parseInt;
 public class Date {
     private String month;
     private int day;
-    private int year;                                               //a four digit number.
+    private int year;                                                   //a four digit number.
 
     public Date() {
         month = "January";
         day = 1;
-        year = 1000;
+        year = 1980;
     }
 
+    //Initializing constructor
     public Date(String strDate) {
         String[] date = strDate.split("/", 3);              //splits the input string at the "/" into a max of 3 strings
         month = date[0];                                                //month is declared as string, no need to use parseInt
-        day = parseInt(date[1]);                                        //using parseInt to convert the day and month from string to int
-        year = parseInt(date[2]);
+        day = parseInt(date[1]);                                        //using parseInt to convert the day from string to int
+        year = parseInt(date[2]);                                       //using parseInt to convert the year from string to int
     }
 
     public Date(int monthInt, int day, int year) {
@@ -159,16 +160,25 @@ public class Date {
         Scanner keyboard = new Scanner(System.in);
         while (tryAgain) {
             System.out.println("Enter month, day, and year.");
-              System.out.println("Do not use a comma.");
-            String monthInput = keyboard.next( );
-            int dayInput = keyboard.nextInt( );
-            int yearInput = keyboard.nextInt( );
-            if (dateOK(monthInput, dayInput, yearInput) ) {
-                setDate(monthInput, dayInput, yearInput);
-                tryAgain = false;
+            System.out.println("Do not use a comma.");
+            try {                                               //using try catch statement to avoid errors if different variable type is put in int
+                String monthInput = keyboard.next( );           //takes input string from keyboard for month
+                if (monthInput.equalsIgnoreCase("quit")){   //if user types 'quit'
+                    System.out.println("Game ended.");
+                    System.exit(0);                       //game will automatically exited
+                }
+                int dayInput = keyboard.nextInt( );              //takes input int from keyboard and stores to day
+                int yearInput = keyboard.nextInt( );             //takes input int from keyboard and stores to year
+                if (dateOK(monthInput, dayInput, yearInput) ) {  //if the date is a valid date
+                    setDate(monthInput, dayInput, yearInput);
+                    tryAgain = false;                            //there is no need to try again
+                }
+                else                                             //otherwise, request a valid date input
+                    System.out.println("Illegal date. Reenter input.");
             }
-            else
-                System.out.println("Illegal date. Reenter input.");
+            catch (Exception e){                                 //if an error appears, ask for a valid date
+                System.out.println("Enter a valid date");
+            }
          }
     }
 
