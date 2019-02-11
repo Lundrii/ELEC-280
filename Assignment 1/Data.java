@@ -14,10 +14,13 @@ public class Date {
 
     //Initializing constructor
     public Date(String strDate) {
+        int monthTemp, dayTemp, yearTemp;
         String[] date = strDate.split("/", 3);              //splits the input string at the "/" into a max of 3 strings
-        month = date[0];                                                //month is declared as string, no need to use parseInt
-        day = parseInt(date[1]);                                        //using parseInt to convert the day from string to int
-        year = parseInt(date[2]);                                       //using parseInt to convert the year from string to int
+        monthTemp = parseInt(date[0]);                                  //month is declared as string, no need to use parseInt
+        dayTemp = parseInt(date[1]);                                    //using parseInt to convert the day from string to int
+        yearTemp = parseInt(date[2]);                                   //using parseInt to convert the year from string to int
+
+        setDate(monthTemp, dayTemp, yearTemp);
     }
 
     public Date(int monthInt, int day, int year) {
@@ -47,10 +50,6 @@ public class Date {
             this.month = monthString(monthInt);
             this.day = day;
             this.year = year;
-        }
-        else {
-            System.out.println("Fatal Error");
-            System.exit(0);
         }
     }
 
@@ -159,24 +158,26 @@ public class Date {
         boolean tryAgain = true;
         Scanner keyboard = new Scanner(System.in);
         while (tryAgain) {
-            System.out.println("Enter month, day, and year.");
-            System.out.println("Do not use a comma.");
+            System.out.println("Enter month/day/year.");
+            //System.out.println("Do not use a comma.");
             try {                                               //using try catch statement to avoid errors if different variable type is put in int
-                String monthInput = keyboard.next( );           //takes input string from keyboard for month
-                if (monthInput.equalsIgnoreCase("quit")){   //if user types 'quit'
+                String dateInput = keyboard.nextLine();         //reads full line of player input
+                if (dateInput.equalsIgnoreCase("quit")){   //if user types 'quit'
                     System.out.println("Game ended.");
                     System.exit(0);                       //game will automatically exited
                 }
-                int dayInput = keyboard.nextInt( );              //takes input int from keyboard and stores to day
-                int yearInput = keyboard.nextInt( );             //takes input int from keyboard and stores to year
-                if (dateOK(monthInput, dayInput, yearInput) ) {  //if the date is a valid date
+                Date birthDate = new Date(dateInput);           //create a Date object from the string input by player
+                int monthInput = birthDate.getMonth();          //use accessor to get the month from new Date object
+                int dayInput = birthDate.getDay();              //use accessor to get the day from new Date Object
+                int yearInput = birthDate.getYear();            //use accessor to get the year from new Date object
+                if (dateOK(monthInput, dayInput, yearInput) ) { //if the date is a valid date
                     setDate(monthInput, dayInput, yearInput);
-                    tryAgain = false;                            //there is no need to try again
+                    tryAgain = false;                           //there is no need to try again
                 }
-                else                                             //otherwise, request a valid date input
+                else                                            //otherwise, request a valid date input
                     System.out.println("Illegal date. Reenter input.");
             }
-            catch (Exception e){                                 //if an error appears, ask for a valid date
+            catch (Exception e){                                //if an error appears, ask for a valid date
                 System.out.println("Enter a valid date");
             }
          }
