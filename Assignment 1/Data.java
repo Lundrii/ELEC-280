@@ -1,6 +1,8 @@
 import java.util.Scanner;
 import static java.lang.Integer.parseInt;
 
+@SuppressWarnings("all")
+
 public class Date {
     private String month;
     private int day;
