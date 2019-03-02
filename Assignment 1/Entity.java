@@ -1,3 +1,5 @@
+@SuppressWarnings("all")
+
 public class Entity {
     //declaring instance variables
     private String name;
