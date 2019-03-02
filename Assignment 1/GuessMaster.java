@@ -1,6 +1,8 @@
 import java.util.Random;
 import java.util.Scanner;
 
+@SuppressWarnings("all")
+
 public class GuessMaster {
     //declaring instance variable
     private int numberOfCandidates;
