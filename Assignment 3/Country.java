@@ -1,3 +1,7 @@
+package com.example.guessmaster;
+
+@SuppressWarnings("all")
+
 public class Country extends Entity {
     private String capital;
 
