@@ -31,7 +31,7 @@ public class GuessMaster extends AppCompatActivity {
     //instantiate all objects that will be used in Guess Master
     Politician trudeau = new Politician("Justin Trudeau", new Date("December", 25,1971), "Male", "Liberal",0.25);
     Singer dion = new Singer("Celine Dion", new Date("March", 30, 1968), "Female","La voix du bon Dieu", new Date("November", 6, 1981),0.5);
-    Person myCreator = new Person("My Creator", new Date("June", 16, 1999), "Male", 1.0);
+    Person myCreator = new Person("My Creator", new Date("January", 1, 2000), "Male", 1.0);
     Country usa = new Country("United States", new Date("July", 4, 1776), "Washington D.C.",0.1);
 
     @Override
